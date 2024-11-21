@@ -119,7 +119,7 @@ From the working directory to deployment `cd deployment`.
    ```bash
    python api0.py
    ```
-   **Using click recording and taken images of how to interact with the deployed service and see the result while the service is running vs container shut down**
+   **Using click recording and taken images of how to interact with the deployed service and see the result while the service is running vs container shut down which return error**
 
 ## Next Step
    - Step to deploy on cloud (aws, gcp...)
