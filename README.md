@@ -68,11 +68,11 @@ Perform EDA, Feature Engineering, model trainer and model evaluation. Also use h
 1. Save the working jupyter notebook to `src` directory once completed.
 2. Convert jupyter notebook to script by
 
-   `jupyter nbconvert --to script experiment.ipynb`
+   `jupyter nbconvert --to script notebook.ipynb`
 
-3. You can run python scripts within the pipenv virtual environment. For example, if you have a script named `script.py`, you can run it with: 
+3. You can run python scripts within the pipenv virtual environment. For example, if you have a script named `train.py`, you can run it with: 
     
-   `python src/script.py` or `python script.py` based on working directory.
+   `python src/train.py` or `python train.py` based on working directory.
    This script will output the model to save and use in deployment
 
 ## Deployment
@@ -82,7 +82,7 @@ Steps:
 From the working directory to deployment `cd deployment`.
 1. Create script to run flaskscript within the Pipenv virtual environment.
    ```bash
-   python app.py
+   python predict.py
    ```
 
 2. **Test APIs**: Create `test.py` to test the model contains a person_data. Pass in sample
@@ -114,11 +114,12 @@ From the working directory to deployment `cd deployment`.
    `docker run -it -d --rm -p 9696:9696 project`
 
 6. **Test your API**:
-    After running the container, on the main project directory contains `api.py` and `api2.py`file. Which contains sample or you can  Change the parameters to see the different results. By passing 
+    After running the container, on the main project directory contains `api0.py`, `api1.py` and `api2.py` file. Which contains sample or you can  Change the parameters to see the different results. By Edit `api0.py` or passing 
 
    ```bash
-   python api.py or api2.py
+   python api0.py
    ```
+   **Using click recording and taken images of how to interact with the deployed service and see the result while the service is running vs container shut down**
 
 ## Next Step
    - Step to deploy on cloud (aws, gcp...)
