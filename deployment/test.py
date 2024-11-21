@@ -25,3 +25,5 @@ person_data = {
 
 response = requests.post(url, json=person_data).json()
 print(response)
+#this return 2=CL (censored due to liver transplantation)
+
