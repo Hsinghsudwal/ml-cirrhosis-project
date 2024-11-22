@@ -9,6 +9,9 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import accuracy_score
 from sklearn.ensemble import GradientBoostingClassifier
 import joblib
+from utils import create_folder
+
+create_folder('output') 
 
 def read_data(path_name):
     data = pd.read_csv(path_name)
@@ -73,14 +76,17 @@ def model_trainer(data):
     # Evaluate the model
     accuracy_best = round(accuracy_score(y_test, y_pred),2)
 
-    with open('../artifact/best_model.pkl','wb') as file:
+    
+    with open('output/best_model.pkl','wb') as file:
             joblib.dump((gbc),file)
+    # with open('deployment/best_model.pkl','wb') as file:
+    #         joblib.dump((gbc),file)
 
     return accuracy_best
 
 
 if __name__=='__main__':
-    path='../data/cirrhosis.csv'
+    path='data/cirrhosis.csv'
     df=read_data(path)
     # print(df)
     data=process_data(df)

@@ -70,17 +70,18 @@ Perform EDA, Feature Engineering, model trainer and model evaluation. Also use h
 
    `jupyter nbconvert --to script notebook.ipynb`
 
-3. You can run python scripts within the pipenv virtual environment. For example, if you have a script named `train.py`, you can run it with: 
-    
-   `python src/train.py` or `python train.py` based on working directory.
-   This script will output the model to save and use in deployment
+3. You can run python scripts within the pipenv virtual environment. For example, if you have a script named `train.py`, you can run it with:  
+```bash
+   python src/train.py
+   ```
+This script will output the model to save into `output` and use in deployment
 
 ## Deployment
 **Creating Docker image and Flask application**:
 
 Steps:
 From the working directory to deployment `cd deployment`.
-1. Create script to run flaskscript within the Pipenv virtual environment.
+1. Create script to run flaskscript within the Pipenv virtual environment via.
    ```bash
    python predict.py
    ```
@@ -89,19 +90,22 @@ From the working directory to deployment `cd deployment`.
    ```bash
    python test.py
    ```
-3. Create docker file for container!
+3. **DOCKER**
+* Create docker file for container!
    ```FROM python:3.11.5-slim
    RUN pip install pipenv
    WORKDIR /app                                                          
    COPY ["Pipfile", "Pipfile.lock", "./"]
    RUN pipenv install --system --deploy
-   COPY ["app.py", "best_model.pkl", "./"]
+   COPY ["predict.py", "best_model.pkl", "./"]
    EXPOSE 9696
-   ENTRYPOINT ["gunicorn", "--bind", "0.0.0.0:9696", "app:app"]
+   ENTRYPOINT ["gunicorn", "--bind", "0.0.0.0:9696", "predict:app"]
    ```
-
-4. build docker
-
+4. docker image to see if docker is install/ or working on your machine
+   ```bash
+   docker images
+   ```
+4. build `docker build tag name .`
    ```bash
    docker build -t project .
    ```
@@ -114,10 +118,10 @@ From the working directory to deployment `cd deployment`.
    `docker run -it -d --rm -p 9696:9696 project`
 
 6. **Test your API**:
-    After running the container, on the main project directory contains `api0.py`, `api1.py` and `api2.py` file. Which contains sample or you can  Change the parameters to see the different results. By Edit `api0.py` or passing 
+    After running the container, on the main project directory contains `api.py` file. Which contains three different samples. you can un-comment or you can  Change the parameters to see the different results. By Edit `api.py` or passing 
 
    ```bash
-   python api0.py
+   python api.py
    ```
    **Using click recording and taken images of how to interact with the deployed service and see the result while the service is running vs container shut down which return error**
 

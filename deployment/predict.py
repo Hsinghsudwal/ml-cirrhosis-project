@@ -6,7 +6,7 @@ from flask import Flask, request, jsonify
 
 model = joblib.load(open('best_model.pkl','rb'))
 
-app = Flask('cirrhosis')
+app = Flask('Cirrhosis')
 
 @app.route('/predict', methods=['POST'])
 def predict():
