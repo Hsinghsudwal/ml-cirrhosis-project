@@ -32,8 +32,7 @@ Status: status of the patient 0 = D (death), 1 = C (censored), 2 = CL (censored 
 
 
 ## Local Setup
-**Installation**: Clone the repository
-    `git clone https://github.com/Hsinghsudwal/ml-project.git`
+**Installation: Clone the repository** `git clone https://github.com/Hsinghsudwal/ml-project.git`
 
 1. Set up Environment for managing libraries and running python scripts.
     install pipenv via cmd terminal if isn't install on your machine.
@@ -56,12 +55,12 @@ Status: status of the patient 0 = D (death), 1 = C (censored), 2 = CL (censored 
 
 ## Notebook
 **Run Jupyter Notebook**:
-From within Pipenv virtual environment, now can run the Notebook.
-From main directory to `cd notebook`
+From within Pipenv virtual environment, now can run the Notebook. On the terminal, from your main project directory to
 ```bash
+   cd notebook
    jupyter lab
    ```
-Perform EDA, Feature Engineering, model trainer and model evaluation. Also use hypertuning technique such as gridSearch and optuna. 
+Perform EDA, Feature Engineering, Model Trainer and Model Evaluation. Also use Hypertuning technique such as GridSearchCV and Optuna. 
 
 ## Src
 **Run Python Scripts**:
@@ -70,27 +69,26 @@ Perform EDA, Feature Engineering, model trainer and model evaluation. Also use h
 
    `jupyter nbconvert --to script notebook.ipynb`
 
-3. You can run python scripts within the pipenv virtual environment. For example, if you have a script named `train.py`, you can run it with:  
-```bash
-   python src/train.py
+3. Once you edit your script, you can run python scripts within the pipenv virtual environment. For example, if you have a script named `train.py`, you can run it from your main project directory:  
+   ```bash
+   python src\train.py
    ```
 This script will output the model to save into `output` and use in deployment
 
 ## Deployment
 **Creating Docker image and Flask application**:
 
-Steps:
-From the working directory to deployment `cd deployment`.
-1. Create script to run flaskscript within the Pipenv virtual environment via.
+**Steps:** From the main project directory create `directory deployment`. Then `cd deployment`.
+1. Create script to run flaskscript within the Pipenv virtual environment. When completed run via
    ```bash
    python predict.py
    ```
 
-2. **Test APIs**: Create `test.py` to test the model contains a person_data. Pass in sample
+2. **Test APIs**: Create `test.py` to test the model contains a person_data. Pass this sample in new terminal
    ```bash
-   python test.py
+   python deploment\test.py
    ```
-3. **DOCKER**
+3. **DOCKER:** From the main project directory `cd deployment`.
 * Create docker file for container!
    ```FROM python:3.11.5-slim
    RUN pip install pipenv
@@ -101,15 +99,15 @@ From the working directory to deployment `cd deployment`.
    EXPOSE 9696
    ENTRYPOINT ["gunicorn", "--bind", "0.0.0.0:9696", "predict:app"]
    ```
-4. docker image to see if docker is install/ or working on your machine
+4. Docker -check image to see if docker is install and/or working on your machine
    ```bash
    docker images
    ```
-4. build `docker build tag name .`
+4. Build Docker
    ```bash
    docker build -t project .
    ```
-5. running docker 
+5. Running Docker 
    ```bash
    docker run -it --rm -p 9696:9696 project
    ```
@@ -118,17 +116,17 @@ From the working directory to deployment `cd deployment`.
    `docker run -it -d --rm -p 9696:9696 project`
 
 6. **Test your API**:
-    After running the container, on the main project directory contains `api.py` file. Which contains three different samples. you can un-comment or you can  Change the parameters to see the different results. By Edit `api.py` or passing 
+    After running the container, on the main project directory contains `api.py` file. Which contains three different samples. you can un-comment or you can change the parameters to see the different results. By edit `api.py` or passing 
 
    ```bash
    python api.py
    ```
-   **Using click recording and taken images of how to interact with the deployed service and see the result while the service is running vs container shut down which return error**
+   **Using click recording and taken images of how to interact with the deployed service and see the result while the service is running vs container shut down which results error**
 
 ## Next Step
-   - Step to deploy on cloud (aws, gcp...)
-   - Set up to monitor the model performance over time
-   - Set up to data monitor so that passed data is corect format such as (float, int, str, bool)
+   - Try to deploy on cloud services like (aws, gcp...)
+   - Monitor the model performance over time
+   - Data monitor so that passed data is corect format such as (Float, Int, Str, bool)
 
 
 
