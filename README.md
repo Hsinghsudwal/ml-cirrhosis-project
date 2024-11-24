@@ -1,4 +1,4 @@
-# ML-Midterm-Project
+# ML-Cirrhosis-Project
 
 ## Problem Statement
  
