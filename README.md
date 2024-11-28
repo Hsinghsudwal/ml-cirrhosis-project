@@ -122,6 +122,7 @@ This script will output the model to save into `output` and use in deployment
    python api.py
    ```
    **Using click recording and taken images of how to interact with the deployed service and see the result while the service is running vs container shut down which results error**
+## The result are located in deployment and `click-doc.pdf`
 
 ## Next Step
    - Try to deploy on cloud services like (aws, gcp...)
